@@ -17,7 +17,7 @@ class DisplayBeer extends React.Component {
 
   componentDidMount() {
     const { favorite } = this.props.beer;
-    if(favorite){
+    if (favorite) {
       this.setState({
         active: true
       });
@@ -27,9 +27,8 @@ class DisplayBeer extends React.Component {
   handleStar = beer => {
     const { handleFavorites } = this.props;
     const { active } = this.state;
-    const { favorite } = beer;
 
-    const type = active || favorite ? "remove" : "add";
+    const type = !active;
 
     handleFavorites(type, beer);
 

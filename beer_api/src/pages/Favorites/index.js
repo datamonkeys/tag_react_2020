@@ -11,7 +11,11 @@ function Favorites(props) {
   const { favorites: beers, handleFavorites } = props;
   return (
     <>
-      <Display beers={beers} handleFavorites={handleFavorites} />
+      { beers.size > 0 ? (
+        <Display beers={beers} handleFavorites={handleFavorites} />
+      ) : (
+        <div style={{padding: "20px"}}>No beers here... 💩</div>
+      )}
     </>
   );
 }

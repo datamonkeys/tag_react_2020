@@ -13,14 +13,14 @@ const renderBeers = (beers, props) => {
 
   beers.forEach(beer => {
     const newBeerObj = { ...beer };
-    const isfavorite = favorites && favorites.has(newBeerObj.id);
+    const isFavorite = favorites && favorites.has(newBeerObj.id);
 
-    if (isfavorite) {
+    if (isFavorite) {
       newBeerObj.favorite = true;
     }
 
     result.push(
-      <DisplayBeer beer={newBeerObj} handleFavorites={handleFavorites} />
+      <DisplayBeer beer={newBeerObj} handleFavorites={handleFavorites} key={newBeerObj.id} />
     );
   });
 

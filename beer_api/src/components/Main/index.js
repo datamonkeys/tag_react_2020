@@ -6,7 +6,7 @@ import axios from "axios";
 import { Switch, Route } from "react-router-dom";
 
 // Configs
-import { BASE_URL, ALL_BEERS_URL } from "../../configs/constants";
+import { BASE_URL } from "../../configs/constants";
 
 // Pages
 import Home from "../../pages/Home";
@@ -25,23 +25,23 @@ class Main extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get(`${BASE_URL}/${ALL_BEERS_URL}`).then(res => {
-      const beers = res.data;
-      this.setState({ beers });
-    });
+    this.handleSearch();
   };
 
-  handleSearch = text => {
-    axios.get(`${BASE_URL}/${ALL_BEERS_URL}?beer_name=${text}`).then(res => {
-      const beers = res.data;
-      this.setState({ beers });
-    });
+  handleSearch = async (text) => {
+    const params = text && {
+      params: {
+        beer_name: text
+      }};
+
+    const res = await axios.get(BASE_URL, params);
+    this.setState({ beers: res.data });
   };
 
   handleFavorites = (type, beer) => {
     const { favorites } = this.state;
 
-    if (type === "add") {
+    if (type) {
       const favoriteBeer = { ...beer };
 
       favoriteBeer.favorite = true;
