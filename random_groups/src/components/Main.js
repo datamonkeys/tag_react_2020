@@ -10,49 +10,52 @@ import Input from "./Input";
 import { STUDENTS } from "../configs/data";
 
 class Main extends React.Component {
-    state = {
-        activeStudents: false
-    };
+  state = {
+    activeStudents: false
+  };
 
-    // You can do it =)
-    // https://www.youtube.com/watch?v=D_Vg4uyYwEk
+  // You can do it =)
+  // https://www.youtube.com/watch?v=D_Vg4uyYwEk
 
-    componentDidMount() {
-        /*
-            According to the universal rule of not mutating the original data,
-            here, we convert it into a Map().
-            So we can make changes to the "copy" (we can put it like that) of the data.
-        */
-        const activeStudents = new Map(STUDENTS.map(i => [i.id, {
-            id: i.id,
-            name: i.name,
-            active: i.active
-        }]));
-
-        this.setState({
-            activeStudents
-        });
-    }
-
+  componentDidMount() {
     /*
+        According to the universal rule of not mutating the original data,
+        here, we convert it into a Map().
+        So we can make changes to the "copy" (we can put it like that) of the data.
+    */
+    const activeStudents = new Map(
+      STUDENTS.map(i => [
+        i.id,
+        {
+          id: i.id,
+          name: i.name,
+          active: i.active
+        }
+      ])
+    );
+
+    this.setState({
+      activeStudents
+    });
+  }
+
+  /*
         Callback function that will be used
         in the MemberCard component.
     */
-    handleActive = (id) => {
+  handleActive = id => {
+    const { activeStudents } = this.state;
+    const student = activeStudents.get(id);
 
-        const { activeStudents } = this.state;
-        const student = activeStudents.get(id);
+    // ! => NOT IN operator
+    student.active = !student.active;
 
-        // ! => NOT IN operator
-        student.active = !student.active;
+    this.setState({
+      activeStudents
+    });
+  };
 
-        this.setState({
-            activeStudents
-        });
-    }
-
-
-    /*
+  /*
     we create an empty auxiliary array (it will receive the components later)
 
     We take the activeStudents from the state and we loop over it.
@@ -60,46 +63,51 @@ class Main extends React.Component {
 
     Then we return the auxiliary array to render.
     */
-    renderCards = () => {
-        // auxiliary array
-        const displayStudents = [];
-        const { activeStudents } = this.state;
+  renderCards = () => {
+    // auxiliary array
+    const displayStudents = [];
+    const { activeStudents } = this.state;
 
-        activeStudents && activeStudents.forEach(i => {
-            displayStudents.push(
-                <MemberCard handleActive={this.handleActive} id={i.id} active={i.active}>
-                    <MemberData name={i.name} />
-                </MemberCard>
-            );
-        });
+    activeStudents &&
+      activeStudents.forEach(i => {
+        displayStudents.push(
+          <MemberCard
+            handleActive={this.handleActive}
+            id={i.id}
+            active={i.active}
+          >
+            <MemberData name={i.name} />
+          </MemberCard>
+        );
+      });
 
-        // return the auxiliary array to render
-        return displayStudents;
-    };
+    // return the auxiliary array to render
+    return displayStudents;
+  };
 
-    render(){
-        const { renderCards } = this;
-        const { activeStudents } = this.state;
+  render() {
+    const { renderCards } = this;
+    const { activeStudents } = this.state;
 
-        return (
-            <>
-                <Input />
-                <div className="wrapper">
-                    <div className="students">
-                        <h3>Students</h3>
-                        { renderCards() }
-                    </div>
-                    {
-                        activeStudents && <div className="groups">
-                            <p>Active Students obj:</p>
-                            { /* Convert student data to json string to show into the div */ }
-                            { JSON.stringify(Array.from(activeStudents.entries())) }
-                        </div>
-                    }
-                </div>
-            </>
-        )
-    }
+    return (
+      <>
+        <Input />
+        <div className="wrapper">
+          <div className="students">
+            <h3>Students</h3>
+            {renderCards()}
+          </div>
+          {activeStudents && (
+            <div className="groups">
+              <p>Students:</p>
+              {/* Convert student data to json string to show into the div */}
+              {JSON.stringify(Array.from(activeStudents.entries()))}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  }
 }
 
 export default Main;
