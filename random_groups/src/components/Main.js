@@ -40,9 +40,9 @@ class Main extends React.Component {
   }
 
   /*
-        Callback function that will be used
-        in the MemberCard component.
-    */
+      Callback function that will be used
+      in the MemberCard component.
+  */
   handleActive = id => {
     const { activeStudents } = this.state;
     const student = activeStudents.get(id);
@@ -68,7 +68,6 @@ class Main extends React.Component {
     const displayStudents = [];
     const { activeStudents } = this.state;
 
-    activeStudents &&
       activeStudents.forEach(i => {
         displayStudents.push(
           <MemberCard
@@ -76,7 +75,9 @@ class Main extends React.Component {
             id={i.id}
             active={i.active}
           >
+            { /* children start */}
             <MemberData name={i.name} />
+            { /* children end */}
           </MemberCard>
         );
       });
@@ -95,7 +96,7 @@ class Main extends React.Component {
         <div className="wrapper">
           <div className="students">
             <h3>Students</h3>
-            {renderCards()}
+            {activeStudents && renderCards()}
           </div>
           {activeStudents && (
             <div className="groups">
