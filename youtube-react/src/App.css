@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+
+header,
+main,
+footer {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+header {
+  background-color: #282c34;
+  min-height: 10vh;
+  color: white;
+}
+
+main {
+  min-height: 80vh;
+}
+
+footer {
+  min-height: 10vh;
+  background-color: #282c34;
+  color: white;
+}
