@@ -37,6 +37,9 @@ class Input extends React.Component {
   };
 
   render() {
+    console.log(this.props.dummy);
+    console.log("all props", this.props);
+
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-row">

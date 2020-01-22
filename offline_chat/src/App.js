@@ -13,11 +13,11 @@ class App extends React.Component {
     messages: []
   };
 
-  messageToState = whereverVarName => {
-    console.log("app", whereverVarName);
+  messageToState = props => {
+    console.log("app", props);
     const messages = this.state.messages;
 
-    messages.push(whereverVarName);
+    messages.push(props);
 
     this.setState({
       messages
@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div className="App container">
         <Messages />
-        <Input parentMsgToState={this.messageToState} />
+        <Input parentMsgToState={this.messageToState} dummy="dummy" />
       </div>
     );
   }
