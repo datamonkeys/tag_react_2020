@@ -1,5 +1,6 @@
 body {
   padding: 20px;
+  background-color: #e7e7e7;
 }
 
 h1,
@@ -12,14 +13,27 @@ p {
 }
 
 .container {
+  max-width: 90vh;
   padding: 20px;
   border: 1px solid #ced4da;
   margin: 20px auto;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .messages {
   text-align: left;
   padding: 18px;
   border: 1px solid #ced4da;
-  margin: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  height: 50vh;
+  overflow: auto;
+}
+
+.message {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }

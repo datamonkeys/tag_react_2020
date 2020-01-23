@@ -44,7 +44,7 @@ class Input extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-row">
-          <div className="col">
+          <div className="col-3">
             <input
               type="text"
               className="form-control"
@@ -53,7 +53,7 @@ class Input extends React.Component {
               value={this.state.inputName}
             />
           </div>
-          <div className="col">
+          <div className="col-7">
             <input
               type="text"
               className="form-control"
@@ -62,8 +62,8 @@ class Input extends React.Component {
               value={this.state.inputMessage}
             />
           </div>
-          <div className="col-3">
-            <button type="submit" className="btn btn-primary  btn-block">
+          <div className="col-2">
+            <button type="submit" className="btn btn-success  btn-block">
               Submit
             </button>
           </div>
