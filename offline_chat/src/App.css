@@ -1,3 +1,12 @@
+body {
+  padding: 20px;
+}
+
+h1,
+p {
+  font-family: Lato;
+}
+
 .App {
   text-align: center;
 }
@@ -6,4 +15,11 @@
   padding: 20px;
   border: 1px solid #ced4da;
   margin: 20px auto;
+}
+
+.messages {
+  text-align: left;
+  padding: 18px;
+  border: 1px solid #ced4da;
+  margin: 10px;
 }

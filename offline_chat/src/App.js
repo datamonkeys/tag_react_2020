@@ -13,21 +13,21 @@ class App extends React.Component {
     messages: []
   };
 
-  messageToState = obj => {
+  messageToState = param => {
     const messages = this.state.messages;
 
-    messages.push(obj);
+    messages.push(param);
 
     this.setState({
-      messages: messages
+      messages
     });
   };
 
   render() {
     return (
       <div className="App container">
-        <Messages />
-        <Input parentMsgToState={this.messageToState} dummy="dummy" />
+        <Messages messages={this.state.messages} />
+        <Input parentMsgToState={this.messageToState} />
       </div>
     );
   }

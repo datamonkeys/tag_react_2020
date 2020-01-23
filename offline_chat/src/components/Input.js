@@ -31,15 +31,16 @@ class Input extends React.Component {
       msg: this.state.inputMessage
     };
 
-    console.log("obj", obj);
+    // reset state
+    this.setState({
+      inputName: "",
+      inputMessage: ""
+    });
 
     this.props.parentMsgToState(obj);
   };
 
   render() {
-    console.log(this.props.dummy);
-    console.log("all props", this.props);
-
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="form-row">
@@ -61,7 +62,7 @@ class Input extends React.Component {
               value={this.state.inputMessage}
             />
           </div>
-          <div className="col">
+          <div className="col-3">
             <button type="submit" className="btn btn-primary  btn-block">
               Submit
             </button>
