@@ -13,14 +13,13 @@ class App extends React.Component {
     messages: []
   };
 
-  messageToState = props => {
-    console.log("app", props);
+  messageToState = obj => {
     const messages = this.state.messages;
 
-    messages.push(props);
+    messages.push(obj);
 
     this.setState({
-      messages
+      messages: messages
     });
   };
 
